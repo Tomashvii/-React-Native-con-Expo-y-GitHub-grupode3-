@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import ListaScreen from './ListaScreen';
+import FuncionOriginal from './screens/FuncionOriginal'; 
 
 const TABS = [
-  { key: 'home',  label: 'Inicio', icon: '🏠' },
-  { key: 'lista', label: 'Lista',  icon: '♟️' },
-  { key: 'perfil',label: 'Perfil', icon: '👤' },
+  { key: 'home',    label: 'Inicio',   icon: '🏠' },
+  { key: 'lista',   label: 'Lista',    icon: '♟️' },
+  { key: 'funcion', label: 'Análisis', icon: '📊' }, 
 ];
 
 function HomeScreen() {
@@ -16,38 +17,28 @@ function HomeScreen() {
   );
 }
 
-function PerfilScreen() {
-  return (
-    <div style={s.screen}>
-      <h2 style={{ color: '#FFF' }}>Perfil</h2>
-      <p style={{ color: '#aaa' }}>Función original del integrante C</p>
-    </div>
-  );
-}
-
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
 
   const renderScreen = () => {
-    if (activeTab === 'home')  return <HomeScreen />;
-    if (activeTab === 'lista') return <ListaScreen />;
-    if (activeTab === 'perfil') return <PerfilScreen />;
+    if (activeTab === 'home')    return <HomeScreen />;
+    if (activeTab === 'lista')   return <ListaScreen />;
+    if (activeTab === 'funcion') return <FuncionOriginal />; 
   };
 
   return (
     <div style={s.container}>
 
-      {/* Cabecera */}
+   
       <div style={s.header}>
         <span>♟ Chess Streamers</span>
       </div>
 
-      {/* Pantalla activa */}
+     
       <div style={s.content}>
         {renderScreen()}
       </div>
 
-      {/* Barra de pestañas */}
       <div style={s.tabBar}>
         {TABS.map(tab => {
           const active = activeTab === tab.key;
